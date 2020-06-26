@@ -16,7 +16,7 @@ var port = process.env.PORT || 8383;
 var hostname = '0.0.0.0';
 
 var cfg = {
-    ssl: false,
+    ssl: true,
     ssl_key: __dirname +'/ssl/server.key',
     ssl_cert: __dirname+'/ssl/server.crt'
 };

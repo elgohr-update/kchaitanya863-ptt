@@ -7,7 +7,7 @@ const ptt = (function(){
     var audiostream;
     var button;
     var id;
-
+    var sending = false;
     return{
         connect : function(){
             const subscribe = (channel)=>{
@@ -22,13 +22,25 @@ const ptt = (function(){
                 button = btn;
                 audiostream.getRecorder().then(recorder =>{
                     
-                    button.onpointerdown = ()=>{
-                        recorder.start();
-                    };
+                    // button.onpointerdown = ()=>{
+                    //     recorder.start();
+                    // };
     
-                    button.onpointerup = ()=>{
-                        recorder.stop();
-                    };
+                    // button.onpointerup = ()=>{
+                    //     recorder.stop();
+                    // };
+                    button.onclick = ()=>{
+                        if(!sending){
+                            sending = true;
+                            button.value = "Stop";
+                            recorder.start();
+                            
+                        } else{
+                            sending = false;
+                            button.value = "Talk";
+                            recorder.stop();
+                        }
+                    }
                 });
             };
 
